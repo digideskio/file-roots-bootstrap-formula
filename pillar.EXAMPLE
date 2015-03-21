@@ -1,0 +1,22 @@
+file_roots_bootstrap:
+  # run the git checkout as this user
+  user: salt
+  # SSH key for git checkouts
+  ssh_key_path: /srv/salt/id_rsa
+  # file_roots source repos
+  src:
+    salt-formula:
+      url: git@github.com:saltstack-formulas/salt-formula.git
+      rev: master
+    nginx-formula:
+      url: git@github.com:saltstack-formulas/nginx-formula.git
+      rev: master
+  # no trailing slash
+  roots_root: /srv/salt/formula
+
+salt:
+  minion:
+    file_roots:
+      base:
+        - /srv/salt/formula/salt-formula
+        - /srv/salt/formula/nginx-formula
